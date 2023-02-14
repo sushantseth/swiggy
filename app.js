@@ -13,7 +13,8 @@ export default function App(){
 
     const [user, setUser] = useState({
         username:"",
-        password:""
+        password:"",
+        loggedIn:false
     })
     
 

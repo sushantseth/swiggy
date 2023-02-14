@@ -4,7 +4,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import About from "./components/About";
 import Contact from "./components/Contact"
 import ErrorComponent from "./components/ErrorComponent";
-import Home from "./components/home";
+import Home from "./components/Home";
 // import RestaurantDetail from "./components/RestaurantDetail";
 import LoginorSignup from "./components/Login";
 import Profile from "./components/Profile";

@@ -4,7 +4,7 @@ import StarIcon from '@mui/icons-material/Star';
 export default function RestaurantCard({data}){
 
 const cloudinaryImageId = data?.cloudinaryImageId;
-const name = data?.name;
+const name = data?.name?.substring(0,33);
 const cuisines = data?.cuisines?.splice(0,5).join(", ");
 const costForTwoString = data?.costForTwoString;
 const deliveryTime = data?.deliveryTime;

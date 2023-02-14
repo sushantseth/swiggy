@@ -12,11 +12,14 @@ import userContext from "../utils/userContext";
 
 export default function Header() {
 
-    const [searchText, setsearchText] = useState("")
-    const [searchInput, setSearchInput] = useState(false)
 
-    const cartitem = useSelector(store => store.cart.items)
+    const {itemObj} = useSelector(store => store.cart)
     const {user} = useContext(userContext)
+    const itemObjValueArray = Object.values(itemObj)
+    const cartSize = itemObjValueArray.reduce((acc,item)=>{
+        return acc+item
+    },0)
+
     
     return (
         <>
@@ -26,8 +29,9 @@ export default function Header() {
                    {user.username != "" && <h4 className="text-orange-400">Welcome {user.username} !</h4> }
                     <li className="mx-12 hover:text-orange-500"><button onClick={()=> setSearchInput(true) }>< SearchIcon/>Search</button></li>
                     <li className="mx-12 hover:text-orange-500"><Link to="/contact"><SupportIcon className="mr-2 mb-1" fontSize="small"/>About</Link></li>
-                    <li className="mx-12 hover:text-orange-500"><Link to="/login"><PersonIcon  className="mr-2 mb-1" fontSize="medium"/>Sign In</Link></li>
-                    <li className="mx-12 hover:text-orange-500"><Link to="/cart">{cartitem.length}<ShoppingCartIcon  className="mr-2 mb-1" fontSize="small"/>Cart</Link></li>
+                   {user?.loggedIn ? <li className="mx-12 hover:text-orange-500"><button><PersonIcon  className="mr-2 mb-1" fontSize="medium"/>Log Out</button></li>
+                   : <li className="mx-12 hover:text-orange-500"><Link  to="/login"><PersonIcon  className="mr-2 mb-1" fontSize="medium"/>Sign In</Link></li> }
+                    <li className="mx-12 hover:text-orange-500"><Link to="/cart">{cartSize}<ShoppingCartIcon  className="mr-2 mb-1" fontSize="small"/>Cart</Link></li>
                 </ul>
             </div>
         </>
