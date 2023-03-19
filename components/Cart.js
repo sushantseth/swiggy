@@ -7,15 +7,15 @@ import CartList from "./CartList";
 
 export default function Cart(){
 
-    const dispatch = useDispatch();
     const {items, itemObj} = useSelector(store => store.cart)
     let distitems = [...new Set(items)]
     console.log(distitems)
-   const itemTotal = distitems?.map((item)=>{
+   let itemTotal = distitems?.map((item)=>{
      return (item?.price)/100 * itemObj[item?.id]
    }).reduce((item, total)=> item + total, 0)
 
    console.log(itemTotal)
+   itemTotal = (Math.round(itemTotal * 100) / 100)
     
     return (
         <>
@@ -40,7 +40,7 @@ export default function Cart(){
 <hr className="mt-5"></hr>
 <div className="flex mt-7">
     <h1 className="text-lg font-bold">TO PAY</h1>
-    <h1 className="text-lg ml-60 font-bold">₹ {50+itemTotal}</h1>
+    <h1 className="text-lg ml-60 font-bold">₹ {50 + Number(itemTotal)}</h1>
 </div>
 </div> 
 

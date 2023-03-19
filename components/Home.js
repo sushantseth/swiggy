@@ -20,22 +20,22 @@ export default function Home() {
 
     return (
         <>
+    
             <div className="m-5">
-                <input className="p-4 border mr-3 outline-orange-500 w-96 shadow-lg" onChange={(e) => {
+                <input data-testid = "input" className="p-4 border mr-3 ml-[450] mt-10 outline-orange-500 w-96 shadow-lg" onChange={(e) => {
                     setButton(false)
                     setsearchText(e.target.value)
-                    setSearch({username : e.target.value})
 
                 }} placeholder="Try pizza.." value={searchText} />
-                <button className= "bg-orange-500 text-white p-4 rounded-lg" onClick={() => {
+                <button data-testid = "search-btn" className= "bg-orange-500 text-white p-4 rounded-lg" onClick={() => {
                     let data = restaurantSearch(searchText, allRestaurant)
                     setfilteredRestaurant([...data])
                     setButton(true)
                 }}> Search </button>
-                <div className="flex flex-wrap justify-between m-16">
+                <div  className="flex flex-wrap justify-between m-16" data-testid = "restList">
                     {button ? filteredRestaurant?.length > 0 ? filteredRestaurant.map((item) => {
                         return <RestaurantCard data={item?.data} key={item?.data?.id}><Link to= {"/"+item?.data?.id} ></Link></RestaurantCard>
-                    }) : <Shimmer /> : allRestaurant?.length > 0 ? allRestaurant.map((item) => {
+                    }) : <p className="text-xl font-normal">No Restaurant found.. try searching with a different name</p> : allRestaurant?.length > 0 ? allRestaurant.map((item) => {
                         return <RestaurantCard data={item?.data} key={item?.data?.id}><Link to= {"/"+item?.data?.id} ></Link></RestaurantCard>
                     }) : <Shimmer />}
                 </div>

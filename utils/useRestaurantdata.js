@@ -6,6 +6,7 @@ const useRestaurantdata = () => {
 
     useEffect(() => {
         fetch(HOME_URL).then((response) => response.json()).then((data) => {
+            console.log(data)
             setfilteredRestaurant([...data?.data?.cards[2]?.data?.data?.cards])
             setallRestaurant([...data?.data?.cards[2]?.data?.data?.cards])
         })

@@ -41,11 +41,16 @@ export default function LoginorSignup() {
                 */}
                 {!signup ?
                  (username && password) != null ? 
-                 <Link to="/"><button onClick={() => setUser({
+                 <Link to="/"><button onClick={() => {
+                    
+                    localStorage.setItem("username",username)
+                    localStorage.setItem("loggedIn",true)
+
+                    setUser({
                     username: username,
                     password: password,
                     loggedIn:true
-                })} className="w-24 h-10 rounded-md text-white bg-orange-400 my-5">Login</button></Link> 
+                })}} className="w-24 h-10 rounded-md text-white bg-orange-400 my-5">Login</button></Link> 
                 : <button onClick={showAlert} className="w-24 h-10 rounded-md text-white bg-orange-400 my-5">Login</button> 
                 : (((username && password && confirmpassword) != null) && (confirmpassword == password)) 
                 ? <button onClick={() => setUser({
